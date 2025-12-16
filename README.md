@@ -1,19 +1,30 @@
-# MusicAppCLI — Aplikasi Pemutar Musik Berbasis CLI (Python)
+# MusicAppCLI (CLI Music Player with Audio)
 
-MusicAppCLI adalah aplikasi pemutar musik berbasis *Command Line Interface* (CLI) yang dibuat menggunakan bahasa pemrograman Python. Aplikasi ini mendukung manajemen lagu, playlist, pencarian lagu, serta simulasi pemutaran musik dengan penerapan berbagai struktur data.
+MusicAppCLI adalah aplikasi *pemutar musik berbasis Command Line Interface (CLI)* yang dikembangkan menggunakan bahasa pemrograman *Python*.  
+Aplikasi ini mampu *memutar file audio (.mp3) secara langsung* menggunakan library `pygame` serta mendukung pengelolaan lagu dan playlist.
 
-## Fitur Utama
+Aplikasi ini menerapkan beberapa struktur data seperti *Doubly Linked List, Stack, dan Binary Search Tree (BST)* untuk mendukung fitur pencarian dan navigasi lagu.
+MusicAppCLI dirancang untuk membantu pengguna mengelola koleksi lagu dan playlist melalui terminal.  
+Aplikasi memiliki dua peran pengguna:
+
+- **Admin** → Mengelola data lagu
+- **User** → Mengelola playlist dan memutar lagu
+
+File lagu disimpan dalam folder `songs/` dengan format nama: `<ID_LAGU>.mp3`
+
+---
+
+## Fitur Aplikasi
 
 ### Mode Admin
-- Login admin dengan password
-- Menambahkan lagu ke library
+- Login admin
 - Melihat seluruh lagu
+- Menambahkan lagu baru
 - Mengubah data lagu
-- Menghapus lagu dari library
-- Data tersimpan otomatis ke file Excel
+- Menghapus lagu
+- Penyimpanan data lagu ke file Excel
 
-Password admin default:
-admin123
+Password admin default: `admin123`
 
 ### Mode User
 - Membuat playlist
@@ -27,83 +38,75 @@ admin123
 - Memutar lagu dari playlist
 
 ### Player Control
+- Play
 - Stop
 - Next
-- Prev (riwayat pemutaran)
+- Prev
+
+Pemutaran lagu menggunakan **pygame.mixer** dan mendukung file audio `.mp3`.
+
+---
 
 ## Struktur Data yang Digunakan
 
-1. **Doubly Linked List**
-   - Menyimpan urutan lagu di library
-   - Menyimpan lagu di playlist
-   - Mendukung navigasi next dan prev
+- **Doubly Linked List**  
+  Digunakan untuk menyimpan urutan lagu di library dan playlist
 
-2. **Binary Search Tree (BST)**
-   - Digunakan untuk pencarian lagu berdasarkan judul
-   - Key berupa judul lagu (lowercase)
-   - Value berupa list song_id
+- **Binary Search Tree (BST)**  
+  Digunakan untuk pencarian lagu berdasarkan judul
 
-3. **Stack**
-   - Digunakan sebagai history pemutaran lagu
-   - Mendukung fitur Prev
+- **Stack**  
+  Digunakan sebagai riwayat pemutaran lagu (fitur Prev)
+
+---
 
 ## Penyimpanan Data
 
-Data disimpan menggunakan file Excel dengan library openpyxl:
-- `songs.xlsx` : menyimpan data lagu
-- `playlists.xlsx` : menyimpan daftar playlist
-- `playlist_songs.xlsx` : menyimpan relasi playlist dan lagu
+Data aplikasi disimpan menggunakan file Excel dengan library `openpyxl`:
 
-Semua file disimpan di dalam folder `database`.
+- `songs.xlsx` → data lagu
+- `playlists.xlsx` → daftar playlist
+- `playlist_songs.xlsx` → relasi playlist dan lagu
+
+---
 
 ## Struktur Folder
 
 ```markdown
 project/
-│── Final_Tugbes.py
+│── FinalTugbes+Lagu.py
 │── database/
 │   ├── songs.xlsx
 │   ├── playlists.xlsx
 │   └── playlist_songs.xlsx
+│── Songs/
+│   ├── S001.mp3
+│   └── S002.mp3
+│   ├── S003.mp3
+│   └── S004.mp3
+...
 ```
-
 ## Cara Menjalankan Program
 
-1. Pastikan Python versi 3.8 atau lebih baru sudah terinstal
-2. Install dependency:
-   `pip install openpyxl`
-3. Jalankan program:
-   `python Final_Tugbes.py`
+### 1️. Persyaratan
+- Python **3.8 atau lebih baru**
+- File lagu berformat `.mp3`
+- Nama file lagu harus sesuai dengan `song_id` di `songs.xlsx`
 
-## Menu Utama
+### 2️. Instalasi Dependency
+Install library yang dibutuhkan:
+```bash
+pip install openpyxl 
+pip install pygame
+```
 
-1. Login Admin
-2. Login User
-0. Keluar
+---
 
-## Menu Admin
+## Daftar Anggota Kelompok
+1. Aghna Shava Akyela Wahjudi - (103102400028)
 
-1. Tambah Lagu
-2. Lihat Semua Lagu
-3. Ubah Data Lagu
-4. Hapus Lagu
-0. Kembali
+2. Luluk Nabilah Putri - (103102400057)
 
-## Menu User
+3. Amanda Faiza Agustin - (103102400060)
 
-1. Buat playlist
-2. Tambah lagu ke playlist
-3. Hapus lagu dari playlist
-4. Lihat playlist
-5. Cari lagu
-6. Play lagu dari library
-7. Play lagu dari playlist
-8. Hapus playlist
-0. Kembali
 
-## Pencarian Lagu
-
-- Cari berdasarkan artis (substring)
-- Cari berdasarkan judul:
-  - Pencarian exact menggunakan BST
-  - Jika tidak ditemukan, menggunakan substring search
